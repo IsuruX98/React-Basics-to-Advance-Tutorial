@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 
 const MultipleInputComponent = () => {
@@ -7,6 +7,12 @@ const MultipleInputComponent = () => {
     email: "",
     mobile: "",
   });
+
+  const inputEl = useRef(null);
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
 
   return (
     <div>
@@ -51,6 +57,11 @@ const MultipleInputComponent = () => {
       >
         Reset
       </button>
+      <br />
+      <input ref={inputEl} type="text" />
+      <br />
+      <button onClick={onButtonClick}>Focus the input</button>
+      <hr />
     </div>
   );
 };
